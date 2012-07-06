@@ -40,9 +40,11 @@ module WikiControllerPatch
 
 	  # display a page (in editing mode if it doesn't exist)
 	  def show_with_template
+	    myfamily = []
 	    @project_id = @project.id
  		if @page.new_record?
 		      if User.current.allowed_to?(:edit_wiki_pages, @project) && editable?
+			#edit
 			@templates = WikiTemplates.find(:all,:conditions => ["project_id = ? " , @project_id ])
 			@templatesg = WikiTemplatesg.find(:all)
 			@miproject = Project.find(params[:project_id])
